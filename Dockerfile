@@ -89,4 +89,5 @@ RUN chmod +x ./manage.py
 
 RUN ./manage.py collectstatic
 
+VOLUME ["/usr/src/app/noethysweb/media"]
 CMD ["/bin/bash", "-c", "./manage.py migrate && /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf"]
