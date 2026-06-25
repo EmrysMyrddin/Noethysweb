@@ -60,6 +60,12 @@ server {
         expires 30d;
         add_header Cache-Control "public";
     }
+    
+    location /media/ {
+        alias /usr/src/app/noethysweb/media/;
+        expires 30d;
+        add_header Cache-Control "public";
+    }
 
     location / {
         proxy_pass http://127.0.0.1:8000;
