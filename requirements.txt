@@ -1,4 +1,4 @@
-Django
+Django<5
 Pillow
 django-anymail
 django-axes
