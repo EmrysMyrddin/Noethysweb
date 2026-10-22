@@ -13,6 +13,10 @@ COPY ./requirements.txt ./requirements-dev.txt .
 RUN pip install psycopg2
 RUN pip3 install -r ./requirements-dev.txt
 
+# django-upload-form still imports ugettext_lazy (removed in Django 4.0); patch the installed file in place.
+# Mirrors the workaround in noethysweb/core/desk/run.py.
+RUN sed -i 's/ugettext_lazy/gettext_lazy/g' /usr/local/lib/python3.12/site-packages/upload_form/forms.py
+
 RUN cat <<'EOF' > /etc/supervisor/conf.d/supervisord.conf
 [supervisord]
 nodaemon=true
